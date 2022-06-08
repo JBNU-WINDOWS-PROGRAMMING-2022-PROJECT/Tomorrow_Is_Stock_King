@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tomorrow_Is_Stock_King.View.Windows"
+        xmlns:converter="clr-namespace:Tomorrow_Is_Stock_King.ViewModel.Converters"
         xmlns:command ="clr-namespace:Tomorrow_Is_Stock_King.ViewModel.Commands.StartSettingWindowCommands"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
@@ -19,7 +20,8 @@
                          Color="#6DD47E"/>
 
         <command:BackBtnCommand x:Key="backbtncommand"/>
-        <command:StartBtnCommand x:Key="startbtncommand"/>
+        <converter:LevelConverter x:Key="levelconverter"/>
+        <converter:UpdateTimeConverter x:Key="updatetimeconverter" />
 
         <Style BasedOn="{StaticResource {x:Type ToggleButton}}" TargetType="RadioButton">
             <Setter Property="FontFamily" Value="../../Fonts\#강원교육모두"/>
@@ -47,7 +49,9 @@
                 FontSize="40"
                 FontFamily="../../Fonts\#강원교육모두"
                 x:Name="startBtn"
-                Command="{Binding Source={StaticResource startbtncommand}}"
+                DataContext="{Binding Source={StaticResource playervm}}"
+                Command="{Binding Path=StartBtnCommand}"
+                CommandParameter="{Binding ElementName=nameBox, Path=Text}"
                 >
 
             <Button.Resources>
@@ -97,7 +101,7 @@
                  Padding="30 0 0 0"
                  x:Name="nameBox"
                  FontFamily="../../Fonts\#강원교육모두"
-                 Cursor="Arrow"
+                 Cursor="Hand"
                  />
         
         <TextBlock FontFamily="../../Fonts\#강원교육모두"
@@ -137,10 +141,21 @@
             </Label.Resources>
         </Label>
 
-        <StackPanel Orientation="Horizontal" Margin="340 240 80 200" >
-            <RadioButton Content="쉬움" Tag="1" Width="126"/>
-            <RadioButton Content="보통" Tag="2" Width="126"/>
-            <RadioButton Content="어려움" Tag="3" Width="126"/>
+        <StackPanel Orientation="Horizontal" Margin="340 240 80 200" DataContext="{Binding Source={StaticResource settingvm},Path=SettingDataToShow}">
+            <RadioButton Command="{Binding Source={StaticResource settingvm}, Path=LevelBtnCommand}"
+                         CommandParameter="{Binding ElementName=easyBtn, Path=Tag}"
+                         IsChecked="{Binding Path=Level, Converter={StaticResource levelconverter}, ConverterParameter=1}" 
+                         Content="쉬움" Tag="1" Width="126" x:Name="easyBtn"/>
+            
+            <RadioButton Command="{Binding Source={StaticResource settingvm}, Path=LevelBtnCommand}"
+                         CommandParameter="{Binding ElementName=normalBtn, Path=Tag}"
+                         IsChecked="{Binding Path=Level, Converter={StaticResource levelconverter}, ConverterParameter=2}" 
+                         Content="보통" Tag="2" Width="126" x:Name="normalBtn"/>
+            
+            <RadioButton Command="{Binding Source={StaticResource settingvm}, Path=LevelBtnCommand}"
+                         CommandParameter="{Binding ElementName=hardBtn, Path=Tag}"
+                         IsChecked="{Binding Path=Level, Converter={StaticResource levelconverter}, ConverterParameter=3}" 
+                         Content="어려움" Tag="3" Width="126" x:Name="hardBtn"/>
         </StackPanel>
 
         <Label Content="주식 갱신 시간" 
@@ -159,12 +174,31 @@
             </Label.Resources>
         </Label>
 
-        <StackPanel Orientation="Horizontal" Margin="340 340 80 100" >
-            <RadioButton Content="10" Tag="1" Width="76"/>
-            <RadioButton Content="15" Tag="2" Width="76"/>
-            <RadioButton Content="20" Tag="3" Width="76"/>
-            <RadioButton Content="25" Tag="4" Width="76"/>
-            <RadioButton Content="30" Tag="5" Width="76"/>
+        <StackPanel Orientation="Horizontal" Margin="340 340 80 100" DataContext="{Binding Source={StaticResource settingvm},Path=SettingDataToShow}">
+            <RadioButton Command="{Binding Source={StaticResource settingvm}, Path=UpdateTimeCommand}"
+                         CommandParameter="{Binding ElementName=tensec, Path=Content}"
+                         IsChecked="{Binding Path=UpdateTime, Converter={StaticResource updatetimeconverter}, ConverterParameter=10}" 
+                         Content="10" Width="76" x:Name="tensec"/>
+
+            <RadioButton Command="{Binding Source={StaticResource settingvm}, Path=UpdateTimeCommand}"
+                         CommandParameter="{Binding ElementName=fifteensec, Path=Content}"
+                         IsChecked="{Binding Path=UpdateTime, Converter={StaticResource updatetimeconverter}, ConverterParameter=15}" 
+                         Content="15" Width="76" x:Name="fifteensec"/>
+
+            <RadioButton Command="{Binding Source={StaticResource settingvm}, Path=UpdateTimeCommand}"
+                         CommandParameter="{Binding ElementName=twentysec, Path=Content}"
+                         IsChecked="{Binding Path=UpdateTime, Converter={StaticResource updatetimeconverter}, ConverterParameter=20}" 
+                         Content="20" Width="76" x:Name="twentysec"/>
+
+            <RadioButton Command="{Binding Source={StaticResource settingvm}, Path=UpdateTimeCommand}"
+                         CommandParameter="{Binding ElementName=twentyfivesec, Path=Content}"
+                         IsChecked="{Binding Path=UpdateTime, Converter={StaticResource updatetimeconverter}, ConverterParameter=25}" 
+                         Content="25" Width="76" x:Name="twentyfivesec"/>
+
+            <RadioButton Command="{Binding Source={StaticResource settingvm}, Path=UpdateTimeCommand}"
+                         CommandParameter="{Binding ElementName=thirtysec, Path=Content}"
+                         IsChecked="{Binding Path=UpdateTime, Converter={StaticResource updatetimeconverter}, ConverterParameter=30}" 
+                         Content="30" Width="76" x:Name="thirtysec"/>
         </StackPanel>
     </Grid>
 </Window>

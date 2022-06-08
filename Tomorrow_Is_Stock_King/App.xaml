@@ -6,5 +6,7 @@
              StartupUri="View/Windows/MainWindow.xaml">
     <Application.Resources>
         <vm:SoundVM x:Key="soundvm" />
+        <vm:SettingVM x:Key="settingvm" />
+        <vm:PlayerVM x:Key="playervm" />
     </Application.Resources>
 </Application>

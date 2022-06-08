@@ -77,6 +77,7 @@
     <Compile Include="ViewModel\Commands\GameMainWindowCommands\GoSettingWindowBtnCommand.cs" />
     <Compile Include="ViewModel\Commands\GoMainCheckWindowCommands\NoBtnCommand.cs" />
     <Compile Include="ViewModel\Commands\GoMainCheckWindowCommands\YesBtnCommand.cs" />
+    <Compile Include="ViewModel\Commands\LevelBtnCommand.cs" />
     <Compile Include="ViewModel\Commands\MainWindowCommands\ExitBtnCommand.cs" />
     <Compile Include="ViewModel\Commands\MainWindowCommands\NewGameBtnCommand.cs" />
     <Compile Include="ViewModel\Commands\SettingWindowCommands\ExitCheckWindowCommand.cs" />
@@ -84,8 +85,11 @@
     <Compile Include="ViewModel\Commands\SettingWindowCommands\ResumeBtnCommand.cs" />
     <Compile Include="ViewModel\Commands\StartSettingWindowCommands\BackBtnCommand.cs" />
     <Compile Include="ViewModel\Commands\StartSettingWindowCommands\StartBtnCommand.cs" />
+    <Compile Include="ViewModel\Commands\UpdateTimeCommand.cs" />
     <Compile Include="ViewModel\Converters\BGMBtnConverter.cs" />
     <Compile Include="ViewModel\Converters\EffectBtnConverter.cs" />
+    <Compile Include="ViewModel\Converters\LevelConverter.cs" />
+    <Compile Include="ViewModel\Converters\UpdateTimeConverter.cs" />
     <Compile Include="ViewModel\PlayerVM.cs" />
     <Compile Include="ViewModel\SettingVM.cs" />
     <Compile Include="ViewModel\SoundVM.cs" />

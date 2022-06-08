@@ -8,7 +8,7 @@ using System.Web.UI;
 
 namespace Tomorrow_Is_Stock_King.Model
 {
-    internal class PersonData : INotifyPropertyChanged
+    public class PersonData : INotifyPropertyChanged
     {
         private string name;
 
@@ -35,6 +35,12 @@ namespace Tomorrow_Is_Stock_King.Model
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
+        }
+
+        public PersonData()
+        {
+            Name = "";
+            Stocks = new List<Pair>();
         }
     }
 }

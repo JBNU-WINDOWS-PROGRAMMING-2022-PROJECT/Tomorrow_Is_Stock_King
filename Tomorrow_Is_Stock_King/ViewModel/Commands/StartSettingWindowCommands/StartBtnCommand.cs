@@ -9,8 +9,14 @@ using Tomorrow_Is_Stock_King.Windows;
 
 namespace Tomorrow_Is_Stock_King.ViewModel.Commands.StartSettingWindowCommands
 {
-    internal class StartBtnCommand : ICommand
+    public class StartBtnCommand : ICommand
     {
+        PlayerVM VM { get; set; }
+        public StartBtnCommand(PlayerVM vm)
+        {
+            VM = vm;
+        }
+
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
@@ -24,6 +30,8 @@ namespace Tomorrow_Is_Stock_King.ViewModel.Commands.StartSettingWindowCommands
             gamemainwindow.Show();
             Application.Current.MainWindow.Close();
             Application.Current.MainWindow = gamemainwindow;
+
+            VM.setName((string)parameter);
         }
     }
 }

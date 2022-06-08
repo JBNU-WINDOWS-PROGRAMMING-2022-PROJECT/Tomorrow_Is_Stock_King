@@ -47,6 +47,9 @@ namespace Tomorrow_Is_Stock_King.Model
 
         public SettingData()
         {
+            Level = 1;
+            UpdateTime = 10;
+            TurnCnt = 0;
         }
     }
 }

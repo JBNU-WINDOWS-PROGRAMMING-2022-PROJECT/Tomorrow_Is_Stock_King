@@ -10,14 +10,25 @@ namespace Tomorrow_Is_Stock_King.ViewModel
 {
     public class SettingVM
     {
-        public SoundData SoundDataToShow { get; set; }
         public SettingData SettingDataToShow { get; set; }
-        public BGMBtnCommand BGMBtnCommand { get; set; }
-        public EffectBtnCommand EffectBtnCommand { get; set; }
+        public LevelBtnCommand LevelBtnCommand { get; set; }
+        public UpdateTimeCommand UpdateTimeCommand { get; set; }
 
         public SettingVM()
         {
             SettingDataToShow = new SettingData();
+            LevelBtnCommand = new LevelBtnCommand(this);
+            UpdateTimeCommand = new UpdateTimeCommand(this);
+        }
+
+        public void setLevel(int lev)
+       {
+            SettingDataToShow.Level = lev;
+        }
+
+        public void setUpdateTime(int time)
+        {
+            SettingDataToShow.UpdateTime = time;
         }
     }
 }

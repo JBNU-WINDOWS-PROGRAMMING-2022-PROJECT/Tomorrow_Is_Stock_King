@@ -7,10 +7,17 @@ using System.Threading.Tasks;
 
 namespace Tomorrow_Is_Stock_King.Model
 {
-    internal class PlayerData : PersonData, INotifyPropertyChanged
+    public class PlayerData : PersonData, INotifyPropertyChanged
     {
-        private long curMoney;
+        private PersonData personData;
 
+        public PersonData PersonData
+        {
+            get { return personData; }
+            set { personData = value; }
+        }
+
+        private long curMoney;
         public long CurMoney
         {
             get { return curMoney; }
@@ -18,7 +25,6 @@ namespace Tomorrow_Is_Stock_King.Model
         }
 
         private long stockMoney;
-
         public long StockMoney
         {
             get { return stockMoney; }
@@ -26,14 +32,11 @@ namespace Tomorrow_Is_Stock_King.Model
         }
 
         private long totalMoney;
-
         public long TotalMoney
         {
             get { return totalMoney; }
             set { totalMoney = value; }
         }
-
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propName)
@@ -42,6 +45,14 @@ namespace Tomorrow_Is_Stock_King.Model
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
+        }
+
+        public PlayerData()
+        {
+            PersonData = new PersonData();
+            CurMoney = 0;
+            StockMoney = 0;
+            TotalMoney = 0;
         }
     }
 }
