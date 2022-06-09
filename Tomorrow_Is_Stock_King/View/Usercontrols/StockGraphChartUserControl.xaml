@@ -6,7 +6,8 @@
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:local="clr-namespace:Tomorrow_Is_Stock_King.View.Usercontrol"
-             xmlns:zoomingAndPanning="clr-namespace:Tomorrow_Is_Stock_King.View.Usercontrol"
+             xmlns:zoomingAndPanning="clr-namespace:Tomorrow_Is_Stock_King.View.Usercontrol" xmlns:vm="clr-namespace:Tomorrow_Is_Stock_King.ViewModel"
+             DataContext="{StaticResource stockvm}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance local:StockGraphChartUserControl}">
     <UserControl.Resources>
@@ -18,13 +19,19 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="1" >
             <Button Click="ToogleZoomingMode">
                 <TextBlock>Toggle zoming mode, current is: 
                     <TextBlock Text="{Binding ZoomingMode, Converter={StaticResource ZoomingModeCoverter}}"/>
                 </TextBlock>
             </Button>
             <Button Click="ResetZoomOnClick">Reset Zoom</Button>
+            <Grid >
+                <Grid DataContext="{StaticResource gameturnvm}">
+                    <TextBlock Text="{Binding Path=StockVM.Item.Clpr, Mode=TwoWay}" Panel.ZIndex="10" Foreground="Black"/>
+                </Grid>
+            </Grid>
+
         </StackPanel>
         <lvc:CartesianChart Grid.Row="2" Series="{Binding SeriesCollection}" Zoom="{Binding ZoomingMode}" >
             <lvc:CartesianChart.AxisX>

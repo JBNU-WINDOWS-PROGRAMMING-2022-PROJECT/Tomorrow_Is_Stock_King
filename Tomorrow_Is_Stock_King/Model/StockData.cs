@@ -7,43 +7,113 @@ using System.Threading.Tasks;
 
 namespace Tomorrow_Is_Stock_King.Model
 {
-    public class Header
+
+
+    public class Item : INotifyPropertyChanged
     {
-        public string resultCode { get; set; }
-        public string resultMsg { get; set; }
+        private string srtnCd;
+        public string SrtnCd
+        {
+            get { return srtnCd; }
+            set { srtnCd = value; OnPropertyChanged("SrtnCd"); }
+        }
+        private string clpr;
+        public string Clpr
+        {
+            get { return clpr; }
+            set { clpr = value; OnPropertyChanged("Clpr"); }
+        }
+        private string itmsNm;
+        public string ItmsNm
+        {
+            get { return itmsNm; }
+            set { itmsNm = value; OnPropertyChanged("ItmsNm"); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string propName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
+        }
+
     }
 
-    public class Item
+    public class Items : INotifyPropertyChanged
     {
-        public string srtnCd { get; set; }
-        public string clpr { get; set; }
-        public string itmsNm { get; set; }
-
+        private IList<Item> item;
+        public IList<Item> Item
+        {
+            get { return item; }
+            set { item = value; OnPropertyChanged("item"); }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string propName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
+        }
     }
 
-    public class Items
+    public class Body : INotifyPropertyChanged
     {
-        public IList<Item> item { get; set; }
+        private Items items;
+        public Items Items
+        {
+            get { return items; }
+            set { items = value; OnPropertyChanged("Items"); }
+        }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string propName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
+        }
     }
 
-    public class Body
+    public class Response : INotifyPropertyChanged
     {
-        public int numOfRows { get; set; }
-        public int pageNo { get; set; }
-        public int totalCount { get; set; }
-        public Items items { get; set; }
+        private Body body;
+        public Body Body
+        {
+            get { return body; }
+            set { body = value; OnPropertyChanged("Body"); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string propName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
+        }
     }
 
-    public class Response
+    public class Example : INotifyPropertyChanged
     {
-        public Header header { get; set; }
-        public Body body { get; set; }
-    }
+        private Response response;
+        public Response Response
+        {
+            get { return response; }
+            set { response = value; OnPropertyChanged("Response"); }
+        }
 
-    public class Example
-    {
-        public Response response { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string propName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
+        }
     }
 
 }

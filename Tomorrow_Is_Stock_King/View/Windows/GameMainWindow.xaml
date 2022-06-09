@@ -8,6 +8,7 @@
         xmlns:uc="clr-namespace:Tomorrow_Is_Stock_King.View.Usercontrol"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
+        DataContext="{StaticResource gameturnvm}"
         Title="GameMainWindow" Height="700" Width="1200">
     <Window.Resources>
         <SolidColorBrush x:Key="bgColor"
@@ -46,22 +47,9 @@
                                  BorderBrush="Black">
                             <ListBox Background="{StaticResource bgColor}"
                                      HorizontalContentAlignment="Center"
-                                     BorderBrush="{StaticResource bgColor}">
-                                <ListBoxItem Content="신한은행"
-                                             Height="40"   
-                                             BorderBrush="Black"/>
-                                <ListBoxItem Content="카카오뱅크"
-                                             Height="40"
-                                             BorderBrush="Black"/>
-                                <ListBoxItem Content="농협"
-                                             Height="40"
-                                             BorderBrush="Black"/>
-                                <ListBoxItem Content="기업은행"
-                                             Height="40"
-                                             BorderBrush="Black"/>
-                                <ListBoxItem Content="전북은행"
-                                             Height="40"
-                                             BorderBrush="Black"/>
+                                     BorderBrush="{StaticResource bgColor}"
+                                     ItemsSource="{Binding Path=StockVM.Companies}"
+                                     SelectedItem="{Binding Path=StockVM.SelectedStock}">
                             </ListBox>
                         </TabItem>
                         <TabItem Background="{StaticResource bgColor}"
@@ -218,6 +206,7 @@
                             BorderThickness="3"
                             HorizontalAlignment="Center" Width="426">
                         <uc:StockGraphChartUserControl x:Name="myUC1"/>
+                       
                     </Border>
                 </Grid>
             </TabItem>
@@ -353,12 +342,12 @@
             <ProgressBar Margin="10,380,0,0"
                          Height="50"
                          Minimum="0" 
-                         Maximum="100"
-                         Value="30"
+                         Maximum="100"                       
+                         Value="{Binding Source={StaticResource gameturnvm}, Path=TimerValue}"
                          Background="{StaticResource bgColor}"
                          Foreground="{StaticResource btnBgColor}"
                          x:Name="timer_bar"/>
-
+            <!--Value=-->
             <Border Margin="10,3,0,0"
                     CornerRadius="10" 
                     Background="{StaticResource btnBgColor}"

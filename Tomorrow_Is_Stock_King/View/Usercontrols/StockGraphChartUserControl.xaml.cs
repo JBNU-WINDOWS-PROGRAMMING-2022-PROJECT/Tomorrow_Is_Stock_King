@@ -17,16 +17,18 @@ using System.Windows.Shapes;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using Tomorrow_Is_Stock_King.ViewModel;
 
 namespace Tomorrow_Is_Stock_King.View.Usercontrol
 {
     /// <summary>
     /// LivechartUserControl.xaml에 대한 상호 작용 논리
     /// </summary>
+    
     public partial class StockGraphChartUserControl : INotifyPropertyChanged
     {
         private ZoomingOptions _zoomingMode;
-
+        
         public StockGraphChartUserControl()
         {
             InitializeComponent();

@@ -8,5 +8,7 @@
         <vm:SoundVM x:Key="soundvm" />
         <vm:SettingVM x:Key="settingvm" />
         <vm:PlayerVM x:Key="playervm" />
+        <vm:StockVM x:Key="stockvm" />
+        <vm:GameTurnVM x:Key="gameturnvm" />
     </Application.Resources>
 </Application>

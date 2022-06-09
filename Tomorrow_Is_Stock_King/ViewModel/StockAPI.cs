@@ -27,7 +27,7 @@ namespace Tomorrow_Is_Stock_King.ViewModel
 
             result = JsonConvert.DeserializeObject<Example>(resultString);
 
-            Item resultitem = (Item)result.response.body.items.item[0];
+            Item resultitem = (Item)result.Response.Body.Items.Item[0];
             
             return resultitem;
 
